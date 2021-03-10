@@ -1,0 +1,86 @@
+@import 'https://fonts.googleapis.com/css?family=Share+Tech+Mono';
+
+
+@font-face {
+  font-family: 'Digital';
+  src: url('//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.eot');
+  src: url('//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.eot?#iefix')
+      format('embedded-opentype'),
+    url('//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.woff2')
+      format('woff2'),
+    url('//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.woff')
+      format('woff'),
+    url('//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.ttf')
+      format('truetype'),
+    url('//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.svg#Digital-7')
+      format('svg');
+}
+
+body{
+  margin: 0;
+}
+#app-container{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#calc-body{
+  height: 500px;
+  width: 400px;
+  background-color: black;
+  display: grid;
+  border-radius: 3px;
+  grid-template-rows: auto auto auto auto auto auto;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 5px;
+  padding: 5px;
+}
+
+#display-area{
+  min-height: 80px;
+  background-color: #222;
+  grid-column: 1 / 5;
+  grid-row: 1 / 2;
+  font-family: Digital;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  word-break: break-word;
+}
+
+#expression{
+  font-size: 2rem;
+  color: white;
+}
+
+#display{
+  font-size: 3rem;
+  margin-top: auto;
+  color: #f60;
+}
+
+
+.numkey{
+  background-color: #006;
+  color: white;
+  font-size: 2rem;
+  font-family: monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+#clear{
+  grid-column: 1 / 4;
+  background-color: #c00;
+  
+}
+
+#equals{
+  grid-column: 3 / 5; 
+  background-color: #f60;
+  
+}

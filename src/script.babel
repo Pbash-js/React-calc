@@ -1,0 +1,83 @@
+
+
+const App = () => {
+  
+  
+  
+  const [input, setInput] = React.useState('')
+  const [output, setOutput] = React.useState('0')
+  
+  const keyPress = e => {
+    if(output == '0'){
+      setOutput(e.target.innerHTML)
+    }else if(e.target.innerHTML == '.'){
+      if(output.match(/\.[\d]+[\-\+\\\*]\d+/) || !output.match(/\./)){
+        setOutput(prevState => prevState + e.target.innerHTML)
+      }
+    }else if((/[\-\+\*\\]/).test(output[output.length - 1])){
+          if((/[\+\*\\]/).test(e.target.innerHTML)){
+            if(output[output.length - 1] == '-' && (/[\-\+\*\\]/).test(output[output.length - 2])){
+              setOutput(output.replace(/[\-\+\\\*]+/, e.target.innerHTML))
+            }
+            else{
+              setOutput(prevState => 
+              {let res = prevState.split('')
+              res.pop()
+               res.push(e.target.innerHTML)
+              return res.join('')}
+            )
+            }
+            
+          }
+      
+      else{
+        setOutput(prevState => prevState + e.target.innerHTML)
+      }
+    }
+    
+    else{
+      setOutput(prevState => prevState + e.target.innerHTML)
+    }
+  }
+  
+  const equals = () => {
+    setOutput(eval(output) + '')
+    setInput(output)
+    
+  }
+  
+  return(
+    <div id="calc-body">
+      <div id="display-area">
+        <div id="expression">{input}</div>
+        <div id="display">{output}</div>
+      </div>
+        <div id="clear" onClick = {() => {
+          setInput(''),
+          setOutput('0')
+        }} class="numkey" >AC</div>
+        <div id="add" class="numkey" onClick = {keyPress}>+</div>
+        <div id="one" class="numkey" onClick = {keyPress}>1</div>
+        <div id="two" class="numkey" onClick = {keyPress}>2</div>
+        <div id="three" class="numkey" onClick = {keyPress}>3</div>
+        <div id="subtract" class="numkey" onClick = {keyPress}>-</div>
+        <div id="four" class="numkey" onClick = {keyPress} >4</div>
+        <div id="five" class="numkey" onClick = {keyPress}>5</div>
+        <div id="six" class="numkey" onClick = {keyPress}>6</div>
+        <div id="multiply" class="numkey" onClick = {keyPress}>*</div>
+        <div id="seven" class="numkey" onClick = {keyPress}>7</div>
+        <div id="eight" class="numkey" onClick = {keyPress}>8</div>
+        <div id="nine" class="numkey" onClick = {keyPress}>9</div>
+        <div id="divide" class="numkey" onClick = {keyPress}>/</div>
+        
+      <div id="decimal" class="numkey" onClick = {keyPress}>.</div>
+        
+        <div id="zero" class="numkey" onClick = {keyPress}>0</div>
+        <div id="equals" class="numkey" onClick = {equals}>=</div>
+        
+    </div>
+  )
+}
+
+
+ReactDOM.render(<App/>, document.getElementById("app-container"))
